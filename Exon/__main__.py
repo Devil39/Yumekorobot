@@ -35,9 +35,7 @@ from Exon.modules.helper_funcs.decorators import Exoncallback, Exoncmd, Exonmsg
 from Exon.modules.helper_funcs.misc import paginate_modules
 from Exon.modules.language import gs
 
-PM_START_TEX = """
-ʜᴇʟʟᴏ `{}`, ʜᴏᴡ ᴀʀᴇ ʏᴏᴜ \nᴡᴀɪᴛ ᴀ ᴍᴏᴍᴇɴᴛ ʙʀᴏ . . . 
-"""
+PM_START_TEXT = Hᴇʟʟᴏ `{}`, ʜᴏᴡ ᴀʀᴇ ʏᴏᴜ \nᴡᴀɪᴛ ᴀ ᴍᴏᴍᴇɴᴛ ʙʀᴏ . ..
 START_IMG = "https://graph.org//file/84e16ca7607cc8fddd8bb.jpg"
 
 buttons = [
@@ -166,11 +164,7 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
                 parse_mode=ParseMode.MARKDOWN,
                 timeout=60,
                 disable_web_page_preview=False,
-            )
-            
-            chat_id = update.effective_chat.id
-         context.bot.send_phot(chat_id=chat_id, photo=open('https://graph.org//file/8ba8e6a825e4d511f394d.jpg'),
-           caption='Welcome to the bot!')                 
+            )               
                                 
             context.bot.answer_callback_query(query.id)
             return
