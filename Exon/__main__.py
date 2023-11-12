@@ -167,7 +167,7 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
                 timeout=60,
                 disable_web_page_preview=False,
             )
-            context.bot.send_photo(chat_id=chat_id, photo=open('https://graph.org//file/8ba8e6a825e4d511f394d.jpg', 'rb'),
+         context.bot.send_photo(chat_id=chat_id, photo=open('https://graph.org//file/8ba8e6a825e4d511f394d.jpg', 'rb'),
             context.bot.answer_callback_query(query.id)
             return
     update.effective_user
@@ -248,7 +248,7 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
                     sql.num_chat_users(),
                     sql.num_chats(),
                     OWNER_ID,
-                ),
+                ),)
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
                 timeout=60,
