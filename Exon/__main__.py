@@ -38,7 +38,7 @@ from Exon.modules.language import gs
 PM_START_TEX = """
 ʜᴇʟʟᴏ `{}`, ʜᴏᴡ ᴀʀᴇ ʏᴏᴜ \nᴡᴀɪᴛ ᴀ ᴍᴏᴍᴇɴᴛ ʙʀᴏ . . . 
 """
-
+PM_START_IMG = "https://graph.org//file/84e16ca7607cc8fddd8bb.jpg"
 
 buttons = [
     [
