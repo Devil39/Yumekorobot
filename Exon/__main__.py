@@ -160,9 +160,6 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
                 text=gs(chat.id, "pm_start_text").format(
                     escape_markdown(first_name),
                     escape_markdown(context.bot.first_name),
-                    escape_markdown(uptime),
-                    sql.num_chat_users(),
-                    sql.num_chats(),
                     OWNER_ID,
                 ),
                 reply_markup=InlineKeyboardMarkup(buttons),
@@ -170,7 +167,7 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
                 timeout=60,
                 disable_web_page_preview=False,
             )
-
+            context.bot.send_photo(chat_id=chat_id, photo=open('https://graph.org//file/8ba8e6a825e4d511f394d.jpg', 'rb'),
             context.bot.answer_callback_query(query.id)
             return
     update.effective_user
