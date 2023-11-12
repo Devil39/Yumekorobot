@@ -167,7 +167,11 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
                 timeout=60,
                 disable_web_page_preview=False,
             )
-         context.bot.send_photo(chat_id=chat_id, photo=open('https://graph.org//file/8ba8e6a825e4d511f394d.jpg', 'rb'),
+            
+            chat_id = update.effective_chat.id
+         context.bot.send_phot(chat_id=chat_id, photo=open('https://graph.org//file/8ba8e6a825e4d511f394d.jpg'),
+           caption='Welcome to the bot!')                 
+                                
             context.bot.answer_callback_query(query.id)
             return
     update.effective_user
