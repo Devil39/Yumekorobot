@@ -48,7 +48,7 @@ buttons = [
     ],
     [
         InlineKeyboardButton(text=f"🚁 ʜᴇʟᴘ 🚁", callback_data="help_back"),
-        InlineKeyboardButton(text=f"🥀 Support 🥀", callback_data="stats_callback"),
+        InlineKeyboardButton(text="🥀 Support 🥀", url="https://t.me/SD_BotsSupport"),
     ],
     
 ]
