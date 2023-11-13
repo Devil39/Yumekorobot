@@ -238,8 +238,52 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
             lol.edit_text("ꜱᴛᴀʀᴛɪɴɢ... ")
             time.sleep(0.4)
             lol.delete()
-            update.effective_message.reply_text(
-                START_IMG,
+            first_name = update.effective_user.first_name
+            update.effective_message.reply_photo(
+                STAMRT_IMG,
+                caption = PM_START_TEXT.format(
+                    escape_markdown(first_name),
+                    escape_markdown(uptime)),
+                reply_markup=InlineKeyboardMarkup(buttons),
+                parse_mode=ParseMode.HTML,
+                timeout=60,
+            )
+ 
+            else:
+            first_name = update.effective_user.first_name
+            update.effective_message.reply_photo(
+                STAMRT_IMG,
+                caption = PM_START_TEXT.format(
+                    escape_markdown(first_name),
+                    escape_markdown(uptime)),
+                reply_markup=InlineKeyboardMarkup(buttons),
+                parse_mode=ParseMode.HTML,
+                timeout=60,
+            )
+    else:
+        ENMUSTART = "https://graph.org//file/26a514720a92a3b2d0165.jpg"
+        first_name = update.effective_user.first_name
+        update.effective_message.reply_video(
+           GROUP_START_IMG, caption= "<b> Ohayo Onii chan {} \nI Am 𝙰𝚕𝚒𝚟𝚎 𝚜𝚒𝚗𝚌𝚎</b>: <code>{}</code>".format(
+                escape_markdown(first_name),
+                uptime
+            ),
+            parse_mode=ParseMode.HTML,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="Support",
+                            url=f"https://telegram.dog/{SUPPORT_CHAT}",
+                        ),
+                        InlineKeyboardButton(
+                          text="Updates", url=f"https://t.me/DemonsBotsUpdates"
+                        ),  
+                    ]
+                ]
+            ),
+        )
+        """    update.effective_message.reply_text(
                 text=gs(chat.id, "pm_start_text").format(
                     escape_markdown(first_name),
                     escape_markdown(context.bot.first_name),
@@ -258,7 +302,7 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
         query = update.callback_query
         if hasattr(query, "id"):
             context.bot.answer_callback_query(query.id)
-
+"""
 
 # for test purposes
 def error_callback(_, context: CallbackContext):
