@@ -248,18 +248,6 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
                 parse_mode=ParseMode.HTML,
                 timeout=60,
             )
- 
-            else:
-            first_name = update.effective_user.first_name
-            update.effective_message.reply_photo(
-                STAMRT_IMG,
-                caption = PM_START_TEXT.format(
-                    escape_markdown(first_name),
-                    escape_markdown(uptime)),
-                reply_markup=InlineKeyboardMarkup(buttons),
-                parse_mode=ParseMode.HTML,
-                timeout=60,
-            )
     else:
         ENMUSTART = "https://graph.org//file/26a514720a92a3b2d0165.jpg"
         first_name = update.effective_user.first_name
