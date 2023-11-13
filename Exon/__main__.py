@@ -246,7 +246,7 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
             lol.delete()
             first_name = update.effective_user.first_name
             update.effective_message.reply_photo(
-                STAMRT_IMG,
+                START_IMG,
                 caption = PM_START_TEXT.format(
                     escape_markdown(first_name),
                     escape_markdown(uptime)),
