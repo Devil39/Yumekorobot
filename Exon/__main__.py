@@ -239,12 +239,10 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
             time.sleep(0.4)
             lol.delete()
             update.effective_message.reply_text(
+                START_IMG,
                 text=gs(chat.id, "pm_start_text").format(
                     escape_markdown(first_name),
                     escape_markdown(context.bot.first_name),
-                    escape_markdown(uptime),
-                    sql.num_chat_users(),
-                    sql.num_chats(),
                     OWNER_ID,
                 ),
               reply_markup=InlineKeyboardMarkup(buttons),
