@@ -253,7 +253,9 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.HTML,
                 timeout=60,
-            )"""    update.effective_message.reply_text(
+            )
+            
+            """    update.effective_message.reply_text(
                 text=gs(chat.id, "pm_start_text").format(
                     escape_markdown(first_name),
                     escape_markdown(context.bot.first_name),
