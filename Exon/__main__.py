@@ -36,7 +36,13 @@ from Exon.modules.helper_funcs.misc import paginate_modules
 from Exon.modules.language import gs
 
 PM_START_TEX = """Hᴇʟʟᴏ `{}`, ʜᴏᴡ ᴀʀᴇ ʏᴏᴜ \nᴡᴀɪᴛ ᴀ ᴍᴏᴍᴇɴᴛ ʙʀᴏ ....."""
-START_IMG = "https://graph.org//file/84e16ca7607cc8fddd8bb.jpg"
+START_IMG = "https://graph.org//file/84e16ca7607cc8fddd8bb.jpg",
+PM_START_TEXT = """Hᴇʏ {}, 🥀
+๏ ᴛʜɪs ɪs AKENO, !
+/n ➻ Akeno ɪs ᴀ ɢʀᴏᴜᴘ ᴍᴀɴᴀɢᴇᴍᴇɴᴛ ʙᴏᴛ ᴡʜɪᴄʜ ᴄᴀɴ ʜᴇʟᴘ ʏᴏᴜ ᴛᴏ ᴍᴀɴᴀɢᴇ ᴀɴᴅ sᴇᴄᴜʀᴇ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴡɪᴛʜ ʜᴜɢᴇ ɢʀᴏᴜᴘ ᴍᴀɴᴀɢᴇᴍᴇɴᴛ ᴘʟᴜɢɪɴs.
+──────────────────
+/n ๏ ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʜᴇʟᴩ ʙᴜᴛᴛᴏɴ ᴛᴏ ɢᴇᴛ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴍʏ ᴍᴏᴅᴜʟᴇs ᴀɴᴅ ᴄᴏᴍᴍᴀɴᴅs.
+"""
 
 buttons = [
     [
@@ -247,31 +253,7 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.HTML,
                 timeout=60,
-            )
-    else:
-        ENMUSTART = "https://graph.org//file/26a514720a92a3b2d0165.jpg"
-        first_name = update.effective_user.first_name
-        update.effective_message.reply_video(
-           GROUP_START_IMG, caption= "<b> Ohayo Onii chan {} \nI Am 𝙰𝚕𝚒𝚟𝚎 𝚜𝚒𝚗𝚌𝚎</b>: <code>{}</code>".format(
-                escape_markdown(first_name),
-                uptime
-            ),
-            parse_mode=ParseMode.HTML,
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton(
-                            text="Support",
-                            url=f"https://telegram.dog/{SUPPORT_CHAT}",
-                        ),
-                        InlineKeyboardButton(
-                          text="Updates", url=f"https://t.me/DemonsBotsUpdates"
-                        ),  
-                    ]
-                ]
-            ),
-        )
-        """    update.effective_message.reply_text(
+            )"""    update.effective_message.reply_text(
                 text=gs(chat.id, "pm_start_text").format(
                     escape_markdown(first_name),
                     escape_markdown(context.bot.first_name),
@@ -282,7 +264,7 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
                 timeout=60,
                 disable_web_page_preview=False,
             )
-
+"""
     else:
         update.effective_message.reply_text(gs(chat.id, "grp_start_text"))
 
@@ -290,7 +272,6 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
         query = update.callback_query
         if hasattr(query, "id"):
             context.bot.answer_callback_query(query.id)
-"""
 
 # for test purposes
 def error_callback(_, context: CallbackContext):
