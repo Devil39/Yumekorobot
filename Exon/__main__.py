@@ -1,4 +1,5 @@
 import importlib
+import json
 import html
 import re
 import time
@@ -255,7 +256,6 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
               reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.HTML,
                 timeout=60,
-                disable_web_page_preview=False,
             )
     else:
         update.effective_message.reply_text(gs(chat.id, "grp_start_text"))
