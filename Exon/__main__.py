@@ -35,8 +35,7 @@ from Exon.modules.helper_funcs.decorators import Exoncallback, Exoncmd, Exonmsg
 from Exon.modules.helper_funcs.misc import paginate_modules
 from Exon.modules.language import gs
 
-"""
-PM_START_TEX = Hᴇʟʟᴏ `{}`, ʜᴏᴡ ᴀʀᴇ ʏᴏᴜ \nᴡᴀɪᴛ ᴀ ᴍᴏᴍᴇɴᴛ ʙʀᴏ . .. """
+PM_START_TEX = Hᴇʟʟᴏ `{}`, ʜᴏᴡ ᴀʀᴇ ʏᴏᴜ \nᴡᴀɪᴛ ᴀ ᴍᴏᴍᴇɴᴛ ʙʀᴏ .....
 START_IMG = "https://graph.org//file/84e16ca7607cc8fddd8bb.jpg"
 
 buttons = [
