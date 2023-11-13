@@ -245,10 +245,10 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
             time.sleep(0.3)
             lol.edit_text("ꜱᴛᴀʀᴛɪɴɢ... ")
             time.sleep(0.4)
-            lol.delete()
-            update.effective_message.reply_photo(
+            lol.delete(),
+          update.effective_message.reply_photo(
             START_IMG,
-                caption = PM_START_TEXT.format(
+                caption = gs(chat.id,"PM_START_TEXT").format(
                     escape_markdown(first_name),
                     escape_markdown(context.bot.first_name),
                     OWNER_ID,
