@@ -243,26 +243,16 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
             time.sleep(0.3)
             lol.edit_text("ꜱᴛᴀʀᴛɪɴɢ... ")
             time.sleep(0.4)
-            lol.delete()
-            first_name = update.effective_user.first_name
-            update.effective_message.reply_photo(
-                START_IMG,
+            lol.delete() 
+            """    update.effective_message.reply_photo(
+            START_IMG,
                 caption = PM_START_TEXT.format(
-                    escape_markdown(first_name),
-                    escape_markdown(uptime)),
-                reply_markup=InlineKeyboardMarkup(buttons),
-                parse_mode=ParseMode.HTML,
-                timeout=60,
-            )
-            
-            """    update.effective_message.reply_text(
-                text=gs(chat.id, "pm_start_text").format(
                     escape_markdown(first_name),
                     escape_markdown(context.bot.first_name),
                     OWNER_ID,
                 ),
               reply_markup=InlineKeyboardMarkup(buttons),
-                parse_mode=ParseMode.MARKDOWN,
+                parse_mode=ParseMode.HTML,
                 timeout=60,
                 disable_web_page_preview=False,
             )
