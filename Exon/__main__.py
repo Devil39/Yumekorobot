@@ -247,7 +247,7 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
                     sql.num_chat_users(),
                     sql.num_chats(),
                     OWNER_ID,
-                ),)
+                ),)(
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
                 timeout=60,
