@@ -1,4 +1,5 @@
 import importlib
+import Html
 import re
 import time
 from sys import argv, version_info
@@ -243,8 +244,8 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
             time.sleep(0.3)
             lol.edit_text("ꜱᴛᴀʀᴛɪɴɢ... ")
             time.sleep(0.4)
-            lol.delete() 
-            """    update.effective_message.reply_photo(
+            lol.delete()
+            update.effective_message.reply_photo(
             START_IMG,
                 caption = PM_START_TEXT.format(
                     escape_markdown(first_name),
@@ -256,7 +257,6 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
                 timeout=60,
                 disable_web_page_preview=False,
             )
-"""
     else:
         update.effective_message.reply_text(gs(chat.id, "grp_start_text"))
 
