@@ -234,36 +234,36 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
 
         else:
             first_name = update.effective_user.first_name
-            usr = update.effective_user
-            lol = update.effective_message.reply_text(
-                PM_START_TEX.format(usr.first_name), parse_mode=ParseMode.MARKDOWN
-            )
-            time.sleep(0.4)
-            lol.edit_text("🎊")
-            time.sleep(0.5)
-            lol.edit_text("⚡")
-            time.sleep(0.3)
-            lol.edit_text("ꜱᴛᴀʀᴛɪɴɢ... ")
-            time.sleep(0.4)
-            lol.delete()
-          update.effective_message.reply_photo(
-            START_IMG,
-                caption = gs(chat.id,"PM_START_TEXT").format(
-                    escape_markdown(first_name),
-                    escape_markdown(context.bot.first_name),
-                    OWNER_ID,
-                ),
-              reply_markup=InlineKeyboardMarkup(buttons),
-                parse_mode=ParseMode.HTML,
-                timeout=60,
-          ),
-    else:
-        update.effective_message.reply_text(gs(chat.id, "grp_start_text"))
+usr = update.effective_user
+lol = update.effective_message.reply_text(
+    PM_START_TEX.format(usr.first_name), parse_mode=ParseMode.MARKDOWN
+)
+time.sleep(0.4)
+lol.edit_text("🎊")
+time.sleep(0.5)
+lol.edit_text("⚡")
+time.sleep(0.3)
+lol.edit_text("ꜱᴛᴀʀᴛɪɴɢ... ")
+time.sleep(0.4)
+lol.delete()
+update.effective_message.reply_photo(
+    START_IMG,
+    caption=gs(chat.id, "PM_START_TEXT").format(
+        escape_markdown(first_name),
+        escape_markdown(context.bot.first_name),
+        OWNER_ID,
+    ),
+    reply_markup=InlineKeyboardMarkup(buttons),
+    parse_mode=ParseMode.HTML,
+    timeout=60,
+)
+else:
+    update.effective_message.reply_text(gs(chat.id, "grp_start_text"))
 
-    if hasattr(update, "callback_query"):
-        query = update.callback_query
-        if hasattr(query, "id"):
-            context.bot.answer_callback_query(query.id)
+if hasattr(update, "callback_query"):
+    query = update.callback_query
+    if hasattr(query, "id"):
+        context.bot.answer_callback_query(query.id)
 
 # for test purposes
 def error_callback(_, context: CallbackContext):
