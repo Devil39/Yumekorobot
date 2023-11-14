@@ -230,8 +230,8 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
 
             elif args[0][1:].isdigit() and "𝐑ᴜʟᴇs" in IMPORTED:
                 IMPORTED["𝐑ᴜʟᴇs"].send_rules(update, args[0], from_pm=True)
-
-else:
+            
+            else:
     first_name = update.effective_user.first_name
     usr = update.effective_user
     lol = update.effective_message.reply_text(
