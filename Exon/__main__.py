@@ -225,18 +225,14 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
 
     if is_user_admin(update, update.effective_user.id):
     send_settings(match.group(1), update.effective_user.id, False)
-else:
-    send_settings(match.group(1), update.effective_user.id, True)
-
 elif args[0][1:].isdigit() and "𝐑ᴜʟᴇs" in IMPORTED:
     IMPORTED["𝐑ᴜʟᴇs"].send_rules(update, args[0], from_pm=True)
-
 else:
     first_name = update.effective_user.first_name
     usr = update.effective_user
     lol = update.effective_message.reply_text(
         PM_START_TEX.format(usr.first_name), parse_mode=ParseMode.MARKDOWN
-    ). 
+    )
     time.sleep(0.4)
     lol.edit_text("🎊")
     time.sleep(0.5)
