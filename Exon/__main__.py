@@ -245,7 +245,7 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
             time.sleep(0.3)
             lol.edit_text("ꜱᴛᴀʀᴛɪɴɢ... ")
             time.sleep(0.4)
-            lol.delete(),
+            lol.delete()
           update.effective_message.reply_photo(
             START_IMG,
                 caption = gs(chat.id,"PM_START_TEXT").format(
@@ -256,7 +256,7 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
               reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.HTML,
                 timeout=60,
-            )
+          ),
     else:
         update.effective_message.reply_text(gs(chat.id, "grp_start_text"))
 
