@@ -215,53 +215,53 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
                     text,
                     InlineKeyboardMarkup(help_buttons),
                 )
+if args[0].lower() == "markdownhelp":
+    if "𝐄xtras" in IMPORTED:
+        IMPORTED["𝐄xtras"].markdown_help_sender(update)
+elif args[0].lower().startswith("stngs_"):
+    match = re.match("stngs_(.*)", args[0].lower())
+    chat = dispatcher.bot.getChat(match.group(1))
 
-                if hasattr(query, "id"):
-                    context.bot.answer_callback_query(query.id)
-            elif args[0].lower() == "markdownhelp":
-                IMPORTED["𝐄xtras"].markdown_help_sender(update)
-            elif args[0].lower().startswith("stngs_"):
-                match = re.match("stngs_(.*)", args[0].lower())
-                chat = dispatcher.bot.getChat(match.group(1))
+    if is_user_admin(update, update.effective_user.id):
+        send_settings(match.group(1), update.effective_user.id, False)
+    else:
+        send_settings(match.group(1), update.effective_user.id, True)
 
-                if is_user_admin(update, update.effective_user.id):
-                    send_settings(match.group(1), update.effective_user.id, False)
-                else:
-                    send_settings(match.group(1), update.effective_user.id, True)
+elif args[0][1:].isdigit() and "𝐑ᴜʟᴇs" in IMPORTED:
+    if "𝐑ᴜʟᴇs" in IMPORTED:
+        IMPORTED["𝐑ᴜʟᴇs"].send_rules(update, args[0], from_pm=True)
 
-            elif args[0][1:].isdigit() and "𝐑ᴜʟᴇs" in IMPORTED:
-                IMPORTED["𝐑ᴜʟᴇs"].send_rules(update, args[0], from_pm=True)
+else:
+    first_name = update.effective_user.first_name
+    usr = update.effective_user
+    lol = update.effective_message.reply_text(
+        PM_START_TEX.format(usr.first_name), parse_mode=ParseMode.MARKDOWN
+    )
+    time.sleep(0.4)
+    lol.edit_text("🎊")
+    time.sleep(0.5)
+    lol.edit_text("⚡")
+    time.sleep(0.3)
+    lol.edit_text("ꜱᴛᴀʀᴛɪɴɢ... ")
+    time.sleep(0.4)
+    lol.delete()
+    update.effective_message.reply_photo(
+        START_IMG,
+        caption=gs(chat.id, "PM_START_TEXT").format(
+            escape_markdown(first_name),
+            escape_markdown(context.bot.first_name),
+            OWNER_ID,
+        ),
+        reply_markup=InlineKeyboardMarkup(buttons),
+        parse_mode=ParseMode.HTML,
+        timeout=60,
+    )
 
-        else:
-            first_name = update.effective_user.first_name
-usr = update.effective_user
-lol = update.effective_message.reply_text(
-    PM_START_TEX.format(usr.first_name), parse_mode=ParseMode.MARKDOWN
-)
-time.sleep(0.4)
-lol.edit_text("🎊")
-time.sleep(0.5)
-lol.edit_text("⚡")
-time.sleep(0.3)
-lol.edit_text("ꜱᴛᴀʀᴛɪɴɢ... ")
-time.sleep(0.4)
-lol.delete()
-update.effective_message.reply_photo(
-    START_IMG,
-    caption=gs(chat.id, "PM_START_TEXT").format(
-        escape_markdown(first_name),
-        escape_markdown(context.bot.first_name),
-        OWNER_ID,
-    ),
-    reply_markup=InlineKeyboardMarkup(buttons),
-    parse_mode=ParseMode.HTML,
-    timeout=60,
-)
 if hasattr(update, "callback_query"):
     query = update.callback_query
     if hasattr(query, "id"):
         context.bot.answer_callback_query(query.id)
-
+        
 # for test purposes
 def error_callback(_, context: CallbackContext):
     """#TODO
