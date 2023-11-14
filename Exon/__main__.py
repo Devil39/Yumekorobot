@@ -253,15 +253,19 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
         parse_mode=ParseMode.HTML,
         timeout=60,
     )
-    
-    else:
-        update.effective_message.reply_text(gs(chat.id, "grp_start_text"))
 
 if hasattr(update, "callback_query"):
     query = update.callback_query
-    if hasattr(query, "id"):
-        context.bot.answer_callback_query(query.id)
-        
+    if hasattr(query, "data"):
+        # Perform some action based on the callback query
+        # For example, update the message or send a new message
+        # This block of code will handle the callback query and respond accordingly
+    else:
+        # If it's not a callback query with data, reply with the start text for the group
+        update.effective_message.reply_text(gs(chat.id, "grp_start_text"))
+else:
+    update.effective_message.reply_text(gs(chat.id, "grp_start_text"))
+    
 # for test purposes
 def error_callback(_, context: CallbackContext):
     """#TODO
