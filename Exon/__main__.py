@@ -256,7 +256,7 @@ update.effective_message.reply_photo(
     reply_markup=InlineKeyboardMarkup(buttons),
     parse_mode=ParseMode.HTML,
     timeout=60,
-)
+),
 else:
     update.effective_message.reply_text(gs(chat.id, "grp_start_text"))
 
