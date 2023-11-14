@@ -253,6 +253,9 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
         parse_mode=ParseMode.HTML,
         timeout=60,
     )
+    
+    else:
+        update.effective_message.reply_text(gs(chat.id, "grp_start_text"))
 
 if hasattr(update, "callback_query"):
     query = update.callback_query
