@@ -266,12 +266,12 @@ else:
     update.effective_message.reply_text(gs(chat.id, "grp_start_text"))
 """
                     def start(update: Update, context: CallbackContext):  # sourcery no-metrics
-    """#TODO
+    #TODO
 
     Params:
         update: Update           -
         context: CallbackContext -
-    """
+    
     chat = update.effective_chat
     update.effective_user
     uptime = get_readable_time((time.time() - StartTime))
