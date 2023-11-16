@@ -153,6 +153,125 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
         context: CallbackContext -
     """
     chat = update.effective_chat
+    uptime = get_readable_time((time.time() - StartTime))
+    args = context.args
+    usr = update.effective_user
+
+    if hasattr(update, "callback_query"):
+        query = update.callback_query
+        if hasattr(query, "id"):
+            first_name = update.effective_user.first_name
+            update.effective_message.edit_text(
+                text=gs(chat.id, "pm_start_text").format(
+                    escape_markdown(first_name),
+                    escape_markdown(context.bot.first_name),
+                    OWNER_ID,
+                ),
+                reply_markup=InlineKeyboardMarkup(buttons),
+                parse_mode=ParseMode.MARKDOWN,
+                timeout=60,
+                disable_web_page_preview=False,
+            )
+            context.bot.answer_callback_query(query.id)
+            return
+
+    uptime = get_readable_time((time.time() - StartTime))
+    
+    if update.effective_chat.type == "private":
+        if args and len(args) >= 1:
+            if args[0].lower() == "help":
+                send_help(update.effective_chat.id, (gs(chat.id, "pm_help_text")))
+            elif args[0].lower().startswith("ghelp_"):
+                query = update.callback_query
+                mod = args[0].lower().split("_", 1)[1]
+                if not HELPABLE.get(mod, False):
+                    return
+                help_list = HELPABLE[mod].get_help(chat.id)
+                help_text = []
+                help_buttons = []
+                if isinstance(help_list, list):
+                    help_text = help_list[0]
+                    help_buttons = help_list[1:]
+                elif isinstance(help_list, str):
+                    help_text = help_list
+                text = (
+                    "ʜᴇʀᴇ ɪs ᴛʜᴇ ʜᴇʟᴘ ғᴏʀ ᴛʜᴇ *{}* ᴍᴏᴅᴜʟᴇ:\n".format(
+                        HELPABLE[mod].mod_name
+                    )
+                    + help_text
+                )
+                help_buttons.append(
+                    [
+                        InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="help_back"),
+                        InlineKeyboardButton(
+                            text="sᴜᴘᴘᴏʀᴛ",
+                            callback_data="ABG_support",
+                        ),
+                    ]
+                )
+                send_help(
+                    chat.id,
+                    text,
+                    InlineKeyboardMarkup(help_buttons),
+                )
+                if hasattr(query, "id"):
+                    context.bot.answer_callback_query(query.id)
+            elif args[0].lower() == "markdownhelp":
+                IMPORTED["𝐄xtras"].markdown_help_sender(update)
+            elif args[0].lower().startswith("stngs_"):
+                match = re.match("stngs_(.*)", args[0].lower())
+                chat = dispatcher.bot.getChat(match.group(1))
+                if is_user_admin(update, update.effective_user.id):
+                    send_settings(match.group(1), update.effective_user.id, False)
+                elif args[0][1:].isdigit() and "𝐑ᴜʟᴇs" in IMPORTED:
+                    IMPORTED["𝐑ᴜʟᴇs"].send_rules(update, args[0], from_pm=True)
+                else:
+                    first_name = update.effective_user.first_name
+                    usr = update.effective_user
+                    lol = update.effective_message.reply_text(
+                        PM_START_TEX.format(usr.first_name), parse_mode=ParseMode.MARKDOWN
+                    )
+                    
+                    time.sleep(0.4)
+                    lol.edit_text("🎊")
+                    time.sleep(0.5)
+                    lol.edit_text("⚡")
+                    time.sleep(0.3)
+                    lol.edit_text("ꜱᴛᴀʀᴛɪɴɢ... ")
+                    time.sleep(0.4)
+                    lol.delete()
+    update.effective_message.reply_photo(
+    START_IMG,
+    caption=gs(chat.id, "PM_START_TEXT").format(
+        escape_markdown(first_name),
+        escape_markdown(context.birst_name),  # Typo: Change 'birst_name' to 'first_name'?
+        OWNER_ID,
+    ),
+    reply_markup=InlineKeyboardMarkup(buttons),
+    parse_mode=ParseMode.HTML,
+    timeout=60,
+)
+
+if hasattr(update, "callback_query"):
+    query = update.callback_query
+    if hasattr(query, "data"):
+        # Perform some action based on the callback query
+        # For example, update the message or send a new message
+        # This block of code will handle the callback query and respond accordingly
+        pass  # Add your code here
+    else:
+        # If it's not a callback query with data, reply with the start text for the group
+        update.effective_message.reply_text(gs(chat.id, "grp_start_text"))
+else:
+    update.effective_message.reply_text(gs(chat.id, "grp_start_text"))
+                    """def start(update: Update, context: CallbackContext):  # sourcery no-metrics
+    """#TODO
+
+    Params:
+        update: Update           -
+        context: CallbackContext -
+    """
+    chat = update.effective_chat
     update.effective_user
     uptime = get_readable_time((time.time() - StartTime))
     args = context.args
@@ -264,7 +383,7 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
         # If it's not a callback query with data, reply with the start text for the group
         update.effective_message.reply_text(gs(chat.id, "grp_start_text"))
 else:
-    update.effective_message.reply_text(gs(chat.id, "grp_start_text"))
+    update.effective_message.reply_text(gs(chat.id, "grp_start_text"))"""
   
 # for test purposes
 def error_callback(_, context: CallbackContext):
