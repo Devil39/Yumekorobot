@@ -264,7 +264,8 @@ if hasattr(update, "callback_query"):
         update.effective_message.reply_text(gs(chat.id, "grp_start_text"))
 else:
     update.effective_message.reply_text(gs(chat.id, "grp_start_text"))
-                    """def start(update: Update, context: CallbackContext):  # sourcery no-metrics
+"""
+                    def start(update: Update, context: CallbackContext):  # sourcery no-metrics
     """#TODO
 
     Params:
@@ -383,7 +384,8 @@ else:
         # If it's not a callback query with data, reply with the start text for the group
         update.effective_message.reply_text(gs(chat.id, "grp_start_text"))
 else:
-    update.effective_message.reply_text(gs(chat.id, "grp_start_text"))"""
+    update.effective_message.reply_text(gs(chat.id, "grp_start_text"))
+    """
   
 # for test purposes
 def error_callback(_, context: CallbackContext):
