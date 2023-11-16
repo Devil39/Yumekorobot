@@ -255,6 +255,7 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
 if hasattr(update, "callback_query"):
     query = update.callback_query
     if hasattr(query, "data"):
+    context.bot.answer_callback_query(query.id)
         # Perform some action based on the callback query
         # For example, update the message or send a new message
         # This block of code will handle the callback query and respond accordingly
