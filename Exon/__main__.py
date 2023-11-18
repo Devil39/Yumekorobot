@@ -240,31 +240,57 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
                     lol.edit_text("ꜱᴛᴀʀᴛɪɴɢ... ")
                     time.sleep(0.4)
                     lol.delete()
-    update.effective_message.reply_photo(
-    START_IMG,
-    caption=gs(chat.id, "PM_START_TEXT").format(
-        escape_markdown(first_name),
-        escape_markdown(context.birst_name),  # Typo: Change 'birst_name' to 'first_name'?
-        OWNER_ID,
-    ),
-    reply_markup=InlineKeyboardMarkup(buttons),
-    parse_mode=ParseMode.HTML,
-    timeout=60,
-)
-
-if hasattr(update, "callback_query"):
-    query = update.callback_query
-    if hasattr(query, "data"):
-    context.bot.answer_callback_query(query.id)
-        # Perform some action based on the callback query
-        # For example, update the message or send a new message
-        # This block of code will handle the callback query and respond accordingly
-        pass  # Add your code here
+                    else:
+            first_name = update.effective_user.first_name
+            update.effective_message.reply_photo(
+                SAITAMA_IMG,
+                PM_START_TEXT.format(
+                    escape_markdown(first_name), escape_markdown(context.bot.first_name)
+                ),
+                parse_mode=ParseMode.MARKDOWN,
+                disable_web_page_preview=True,
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton(
+                                text="☑️ Add Saitama to your group",
+                                url="t.me/{}?startgroup=true".format(
+                                    context.bot.username
+                                ),
+                            )
+                        ],
+                        [
+                            InlineKeyboardButton(
+                                text="🚑 Support Group",
+                                url=f"https://t.me/{SUPPORT_CHAT}",
+                            ),
+                            InlineKeyboardButton(
+                                text="🔔 Updates Channel",
+                                url="https://t.me/OnePunchUpdates",
+                            ),
+                        ],
+                        [
+                            InlineKeyboardButton(
+                                text="🧾 Getting started guide",
+                                url="https://t.me/OnePunchUpdates/29",
+                            )
+                        ],
+                        [
+                            InlineKeyboardButton(
+                                text="🗄 Source code",
+                                url="https://github.com/AnimeKaizoku/SaitamaRobot",
+                            )
+                        ],
+                    ]
+                ),
+            )
     else:
-        # If it's not a callback query with data, reply with the start text for the group
-        update.effective_message.reply_text(gs(chat.id, "grp_start_text"))
-else:
-    update.effective_message.reply_text(gs(chat.id, "grp_start_text"))
+        update.effective_message.reply_text(
+            "I'm awake already!\n<b>Haven't slept since:</b> <code>{}</code>".format(
+                uptime
+            ),
+            parse_mode=ParseMode.HTML,
+        )
 """
                     def start(update: Update, context: CallbackContext):  # sourcery no-metrics
     #TODO
