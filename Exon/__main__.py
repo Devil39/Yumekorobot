@@ -240,10 +240,10 @@ def start(update: Update, context: CallbackContext):  # sourcery no-metrics
                     lol.edit_text("ꜱᴛᴀʀᴛɪɴɢ... ")
                     time.sleep(0.4)
                     lol.delete()
-                    else:
+        else:
             first_name = update.effective_user.first_name
             update.effective_message.reply_photo(
-                SAITAMA_IMG,
+                START_IMG,
                 PM_START_TEXT.format(
                     escape_markdown(first_name), escape_markdown(context.bot.first_name)
                 ),
